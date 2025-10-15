@@ -1,0 +1,150 @@
+2025-10-15 15:18:59.837 | ERROR    | __main__:send_meal:71 - A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message caption is too long
+Traceback (most recent call last):
+
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/threading.py", line 1030, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x104bb3240>
+    └ <WorkerThread(WorkerThread1, started daemon 6113538048)>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x104ce8a40>
+    └ <WorkerThread(WorkerThread1, started daemon 6113538048)>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 97, in run
+    task(*args, **kwargs)
+    │     │       └ {'handlers': [{'function': <function greet_user at 0x107dc80e0>, 'pass_bot': False, 'filters': {'content_types': ['text'], 'f...
+    │     └ (<telebot.types.Message object at 0x1079880b0>,)
+    └ <bound method TeleBot._run_middlewares_and_handler of <telebot.TeleBot object at 0x104a4cd70>>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 10134, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             │                   └ <telebot.types.Message object at 0x1079880b0>
+             └ {'function': <function find_recipe at 0x107dc8180>, 'pass_bot': False, 'filters': {'content_types': ['text'], 'commands': ['н...
+
+  File "/Users/anastasiavasinskaa/projects/vibe-coding/meal-bot/bot.py", line 51, in find_recipe
+    send_meal(message.chat.id, meal)
+    │         │       │    │   └ {'idMeal': '53014', 'strMeal': 'Pizza Express Margherita', 'strMealAlternate': None, 'strCategory': 'Miscellaneous', 'strArea...
+    │         │       │    └ 704525373
+    │         │       └ <telebot.types.Chat object at 0x106e6de50>
+    │         └ <telebot.types.Message object at 0x1079880b0>
+    └ <function send_meal at 0x107dc8040>
+
+> File "/Users/anastasiavasinskaa/projects/vibe-coding/meal-bot/bot.py", line 64, in send_meal
+    bot.send_photo(chat_id, meal['strMealThumb'], caption=text, parse_mode='HTML', reply_markup=kb)
+    │   │          │        │                             │                                     └ <telebot.types.InlineKeyboardMarkup object at 0x107de82c0>
+    │   │          │        │                             └ '<b>Pizza Express Margherita</b>\n1 Preheat the oven to 230°C.\r\n\r\n2 Add the sugar and crumble the fresh yeast into warm w...
+    │   │          │        └ {'idMeal': '53014', 'strMeal': 'Pizza Express Margherita', 'strMealAlternate': None, 'strCategory': 'Miscellaneous', 'strArea...
+    │   │          └ 704525373
+    │   └ <function TeleBot.send_photo at 0x1078ebf60>
+    └ <telebot.TeleBot object at 0x104a4cd70>
+
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 2513, in send_photo
+    apihelper.send_photo(
+    │         └ <function send_photo at 0x1078d8c20>
+    └ <module 'telebot.apihelper' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/api...
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/apihelper.py", line 606, in send_photo
+    return _make_request(token, method_url, params=payload, files=files, method='post')
+           │             │      │                  │              └ None
+           │             │      │                  └ {'chat_id': 704525373, 'photo': 'https://www.themealdb.com/images/media/meals/x0lk931587671540.jpg', 'caption': '<b>Pizza Exp...
+           │             │      └ 'sendPhoto'
+           │             └ '8321369873:AAGcAw2k9Z-zxDJ_tsUc7ycGR6IjB1JsGto'
+           └ <function _make_request at 0x106bf0680>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  │             │            └ <Response [400]>
+                  │             └ 'sendPhoto'
+                  └ <function _check_result at 0x106f763e0>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/apihelper.py", line 197, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+          │                    │            │       └ {'ok': False, 'error_code': 400, 'description': 'Bad Request: message caption is too long'}
+          │                    │            └ <Response [400]>
+          │                    └ 'sendPhoto'
+          └ <class 'telebot.apihelper.ApiTelegramException'>
+
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message caption is too long
+2025-10-15 15:19:00.046 | INFO     | __main__:find_recipe:52 - Пользователь 704525373 ищет 'pizza', найдено Pizza Express Margherita
+2025-10-15 15:21:18.935 | ERROR    | __main__:send_meal:71 - A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message caption is too long
+Traceback (most recent call last):
+
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/threading.py", line 1030, in _bootstrap
+    self._bootstrap_inner()
+    │    └ <function Thread._bootstrap_inner at 0x104bb3240>
+    └ <WorkerThread(WorkerThread2, started daemon 6130364416)>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/threading.py", line 1073, in _bootstrap_inner
+    self.run()
+    │    └ <function WorkerThread.run at 0x104ce8a40>
+    └ <WorkerThread(WorkerThread2, started daemon 6130364416)>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/util.py", line 97, in run
+    task(*args, **kwargs)
+    │     │       └ {'handlers': [{'function': <function greet_user at 0x107dc80e0>, 'pass_bot': False, 'filters': {'content_types': ['text'], 'f...
+    │     └ (<telebot.types.Message object at 0x107c86d80>,)
+    └ <bound method TeleBot._run_middlewares_and_handler of <telebot.TeleBot object at 0x104a4cd70>>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 10134, in _run_middlewares_and_handler
+    result = handler['function'](message)
+             │                   └ <telebot.types.Message object at 0x107c86d80>
+             └ {'function': <function find_recipe at 0x107dc8180>, 'pass_bot': False, 'filters': {'content_types': ['text'], 'commands': ['н...
+
+  File "/Users/anastasiavasinskaa/projects/vibe-coding/meal-bot/bot.py", line 51, in find_recipe
+    send_meal(message.chat.id, meal)
+    │         │       │    │   └ {'idMeal': '53014', 'strMeal': 'Pizza Express Margherita', 'strMealAlternate': None, 'strCategory': 'Miscellaneous', 'strArea...
+    │         │       │    └ 704525373
+    │         │       └ <telebot.types.Chat object at 0x106eb5a60>
+    │         └ <telebot.types.Message object at 0x107c86d80>
+    └ <function send_meal at 0x107dc8040>
+
+> File "/Users/anastasiavasinskaa/projects/vibe-coding/meal-bot/bot.py", line 64, in send_meal
+    bot.send_photo(chat_id, meal['strMealThumb'], caption=text, parse_mode='HTML', reply_markup=kb)
+    │   │          │        │                             │                                     └ <telebot.types.InlineKeyboardMarkup object at 0x107deb8f0>
+    │   │          │        │                             └ '<b>Pizza Express Margherita</b>\n1 Preheat the oven to 230°C.\r\n\r\n2 Add the sugar and crumble the fresh yeast into warm w...
+    │   │          │        └ {'idMeal': '53014', 'strMeal': 'Pizza Express Margherita', 'strMealAlternate': None, 'strCategory': 'Miscellaneous', 'strArea...
+    │   │          └ 704525373
+    │   └ <function TeleBot.send_photo at 0x1078ebf60>
+    └ <telebot.TeleBot object at 0x104a4cd70>
+
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/__init__.py", line 2513, in send_photo
+    apihelper.send_photo(
+    │         └ <function send_photo at 0x1078d8c20>
+    └ <module 'telebot.apihelper' from '/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/api...
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/apihelper.py", line 606, in send_photo
+    return _make_request(token, method_url, params=payload, files=files, method='post')
+           │             │      │                  │              └ None
+           │             │      │                  └ {'chat_id': 704525373, 'photo': 'https://www.themealdb.com/images/media/meals/x0lk931587671540.jpg', 'caption': '<b>Pizza Exp...
+           │             │      └ 'sendPhoto'
+           │             └ '8321369873:AAGcAw2k9Z-zxDJ_tsUc7ycGR6IjB1JsGto'
+           └ <function _make_request at 0x106bf0680>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/apihelper.py", line 168, in _make_request
+    json_result = _check_result(method_name, result)
+                  │             │            └ <Response [400]>
+                  │             └ 'sendPhoto'
+                  └ <function _check_result at 0x106f763e0>
+  File "/Library/Frameworks/Python.framework/Versions/3.12/lib/python3.12/site-packages/telebot/apihelper.py", line 197, in _check_result
+    raise ApiTelegramException(method_name, result, result_json)
+          │                    │            │       └ {'ok': False, 'error_code': 400, 'description': 'Bad Request: message caption is too long'}
+          │                    │            └ <Response [400]>
+          │                    └ 'sendPhoto'
+          └ <class 'telebot.apihelper.ApiTelegramException'>
+
+telebot.apihelper.ApiTelegramException: A request to the Telegram API was unsuccessful. Error code: 400. Description: Bad Request: message caption is too long
+2025-10-15 15:21:19.072 | INFO     | __main__:find_recipe:52 - Пользователь 704525373 ищет 'pizza', найдено Pizza Express Margherita
+2025-10-15 15:21:58.788 | INFO     | __main__:find_recipe:52 - Пользователь 704525373 ищет 'pizza', найдено Pizza Express Margherita
+2025-10-15 15:22:13.123 | INFO     | __main__:rate_meal:111 - Пользователь 704525373 поставил 4⭐ рецепту 53014
+2025-10-15 15:22:20.324 | INFO     | __main__:add_fav:89 - Пользователь 704525373 добавил 53014 в избранное
+2025-10-15 15:26:39.087 | INFO     | __main__:show_favs:146 - Пользователь 704525373 запросил избранное
+2025-10-15 15:27:02.439 | INFO     | __main__:find_recipe:66 - Пользователь 704525373 ищет 'pasta', найдено Mediterranean Pasta Salad
+2025-10-15 15:27:11.120 | INFO     | __main__:rate_meal:125 - Пользователь 704525373 поставил 4⭐ рецепту 52777
+2025-10-15 15:27:29.064 | INFO     | __main__:show_favs:146 - Пользователь 704525373 запросил избранное
+2025-10-15 15:28:46.805 | INFO     | __main__:show_favs:149 - Пользователь 704525373 запросил избранное
+2025-10-15 15:28:57.783 | INFO     | __main__:rate_meal:125 - Пользователь 704525373 поставил 5⭐ рецепту 53014
+2025-10-15 15:29:00.086 | INFO     | __main__:show_favs:149 - Пользователь 704525373 запросил избранное
+2025-10-15 15:45:20.457 | INFO     | __main__:get_search_text:66 - Пользователь 704525373 ищет 'cream', найдено Cream Cheese Tart
+2025-10-15 15:45:29.634 | INFO     | __main__:rate_meal:152 - Пользователь 704525373 поставил 2⭐ рецепту 52779
+2025-10-15 15:45:45.813 | INFO     | __main__:show_favs:176 - Пользователь 704525373 запросил избранное
+2025-10-15 15:47:48.707 | INFO     | __main__:show_favs:183 - Пользователь 704525373 запросил избранное
+2025-10-15 15:49:33.033 | INFO     | __main__:get_search_text:66 - Пользователь 704525373 ищет 'pasta', найдено Mediterranean Pasta Salad
+2025-10-15 15:49:47.570 | INFO     | __main__:rate_meal:157 - Пользователь 704525373 поставил 3⭐ рецепту 52777
+2025-10-15 15:49:50.650 | INFO     | __main__:show_favs:183 - Пользователь 704525373 запросил избранное
+2025-10-15 15:56:10.746 | INFO     | __main__:show_favs:196 - Пользователь 704525373 запросил избранное
+2025-10-15 15:56:21.126 | INFO     | __main__:get_search_text:69 - Пользователь 704525373 ищет 'pasta', найдено 1 вариантов.
+2025-10-15 15:56:54.548 | INFO     | __main__:get_search_text:69 - Пользователь 704525373 ищет 'pizza', найдено 1 вариантов.
+2025-10-15 15:58:55.683 | INFO     | __main__:show_favs:197 - Пользователь 704525373 запросил избранное
+2025-10-15 15:59:05.772 | INFO     | __main__:get_search_text:69 - Пользователь 704525373 ищет 'pizza', найдено 1 вариантов.
+2025-10-15 15:59:25.617 | INFO     | __main__:rate_meal:171 - Пользователь 704525373 поставил 5⭐ рецепту 53014
+2025-10-15 15:59:31.942 | INFO     | __main__:get_search_text:69 - Пользователь 704525373 ищет 'pasta', найдено 1 вариантов.
